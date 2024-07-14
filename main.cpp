@@ -1,9 +1,11 @@
 #include <iostream>
 #include <map>
+#include "menuDriver.h"
 #include "gpaCalc.h"
 
 
 int main() {
+    int menuChoice;
     int terms;
     int creditHours;
     std::map<int, int> creditHoursPerTerm;
@@ -20,5 +22,9 @@ int main() {
     gpaCalc findMyGPA;
     std::cout << "\n";
     findMyGPA.calculate(creditHoursPerTerm);
+
+    menuDriver userInitiated;
+    userInitiated.executeOption();
+
     return 0;
 }
