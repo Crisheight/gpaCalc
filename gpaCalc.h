@@ -11,7 +11,10 @@
 
 class gpaCalc {
 public:
-    int calculate(int);
+    float calculate(int);
+    float termGPA();
+    float cumulativeGPA();
+    float idealGPA();
 };
 
 #endif //GPACALC_GPACALC_H
