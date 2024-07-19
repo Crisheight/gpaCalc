@@ -10,6 +10,11 @@ int main() {
     int creditHours;
     std::map<int, int> creditHoursPerTerm;
 
+    menuDriver menu;
+    menuChoice = menu.setIntention();
+
+
+
     std::cout << "GPA Calculator, please enter the number of terms:\n";
     std::cin >> terms;
 
@@ -20,11 +25,7 @@ int main() {
     }
 
     gpaCalc findMyGPA;
-    std::cout << "\n";
-    findMyGPA.calculate(creditHoursPerTerm);
-
-    menuDriver userInitiated;
-    userInitiated.executeOption();
+    findMyGPA.calculate(menuChoice);
 
     return 0;
 }
