@@ -11,7 +11,7 @@
 
 class gpaCalc {
 public:
-    int calculate(const std::map<int, int> &intMap);
+    int calculate(int);
 };
 
 #endif //GPACALC_GPACALC_H

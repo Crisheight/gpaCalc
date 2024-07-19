@@ -4,9 +4,6 @@
 
 #include "gpaCalc.h"
 
-int gpaCalc::calculate(const std::map<int, int> &intMap){
-    for (const auto& pair : intMap) {
-        std::cout << pair.second << "\n";
-    }
-    return 0;
+int gpaCalc::calculate(const int choice){
+
 }
