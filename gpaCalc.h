@@ -12,7 +12,7 @@
 class gpaCalc {
 public:
     float calculate(int);
-    float termGPA();
+    float semesterGPA();
     float cumulativeGPA();
     float idealGPA();
     float currentGPA();
