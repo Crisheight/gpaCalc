@@ -15,6 +15,7 @@ public:
     float termGPA();
     float cumulativeGPA();
     float idealGPA();
+    float currentGPA();
 };
 
 #endif //GPACALC_GPACALC_H
