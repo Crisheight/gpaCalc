@@ -12,7 +12,7 @@ int menuDriver::setIntention() {
     std::cout << "1. Calculate Semester GPA \n";
     std::cout << "2. Calculate Cumulative GPA \n";
     std::cout << "3. Calculate Ideal GPA \n";
-    std::cout << "4. Current GPA \n";
+    std::cout << "4. Display Current GPA \n";
 
     std::cin >> userChoice;
 
