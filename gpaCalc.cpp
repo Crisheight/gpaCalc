@@ -5,12 +5,15 @@
 #include <limits>
 #include "gpaCalc.h"
 
-float gpaCalc::calculate(const int choice){
+float lastKnownGPA;
+
+void gpaCalc::calculate(const int choice){
+
     if(choice == 1) {gpaCalc::semesterGPA();}
     else if(choice == 2) {gpaCalc::cumulativeGPA();}
     else if(choice == 3) {gpaCalc::idealGPA();}
     else {gpaCalc::currentGPA();}
-}
+} // End calculate
 
 float gpaCalc::semesterGPA() {
     int classes;
@@ -34,7 +37,7 @@ float gpaCalc::semesterGPA() {
     }
 
     return 0;
-}
+} // End semesterGPA
 
 float gpaCalc::cumulativeGPA() {
     int terms;
@@ -51,12 +54,16 @@ float gpaCalc::cumulativeGPA() {
     }
 
     return 0;
-}
+} // End cumulativeGPA
 
 float gpaCalc::idealGPA() {
     return 0;
-}
+} // End idealGPA
 
 float gpaCalc::currentGPA() {
-    return 0;
-}
+    if (lastKnownGPA > 0) {
+        return lastKnownGPA;
+    } else {
+        return 0;
+    }
+} // End currentGPA

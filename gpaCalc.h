@@ -11,11 +11,11 @@
 
 class gpaCalc {
 public:
-    float calculate(int);
-    float semesterGPA();
-    float cumulativeGPA();
-    float idealGPA();
-    float currentGPA();
+    static void calculate(int);
+    static float semesterGPA();
+    static float cumulativeGPA();
+    static float idealGPA();
+    static float currentGPA();
 };
 
 #endif //GPACALC_GPACALC_H
