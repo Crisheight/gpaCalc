@@ -8,7 +8,7 @@
 
 class menuDriver {
 public:
-    int setIntention();
+    static int setIntention();
 };
 
 
