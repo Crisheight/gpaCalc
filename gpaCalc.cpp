@@ -18,7 +18,10 @@ void gpaCalc::calculate(const int choice){
 float gpaCalc::semesterGPA() {
     int classes;
     int creditHours;
-    std::map<int, int> creditHoursPerClass;
+    float courseGPA;
+
+    std::map<int, std::pair<int, float>> courseInfo;
+    //use the class as a key to access the pair that holds course hour and grade
 
     std::cout << "Semester GPA Calculator, please enter the number of classes:\n";
     std::cin >> classes;
@@ -33,7 +36,11 @@ float gpaCalc::semesterGPA() {
     for (int i = 0; i < classes; i++) {
         std::cout << "Enter the number of credit hours for class " << i + 1 << "\n";
         std::cin >> creditHours;
-        creditHoursPerClass[i] += creditHours;
+
+        std::cout << "Enter the GPA for class " << i + 1 << "\n";
+        std::cin >> courseGPA;
+
+        courseInfo[i] = std::pair(creditHours, courseGPA);
     }
 
     return 0;
@@ -57,13 +64,16 @@ float gpaCalc::cumulativeGPA() {
 } // End cumulativeGPA
 
 float gpaCalc::idealGPA() {
+    std::cout << "Enter the GPA you want to achieve: ";
     return 0;
 } // End idealGPA
 
 float gpaCalc::currentGPA() {
     if (lastKnownGPA > 0) {
+        std::cout << lastKnownGPA;
         return lastKnownGPA;
     } else {
+        std::cout << 0.0;
         return 0;
     }
 } // End currentGPA
