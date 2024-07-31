@@ -76,19 +76,46 @@ float gpaCalc::semesterGPA() {
 
 float gpaCalc::cumulativeGPA() {
     int terms;
-    int creditHours;
-    std::map<int, int> creditHoursPerTerm;
+    int totalCreditHours = 0;
+    float totalGPA = 0.0;
 
     std::cout << "Cumulative GPA Calculator, please enter the number of terms:\n";
     std::cin >> terms;
 
-    for (int i = 0; i < terms; i++) {
-        std::cout << "Enter the number of credit hours for term " << i + 1 << "\n";
-        std::cin >> creditHours;
-        creditHoursPerTerm[i] += creditHours;
+    while (std::cin.fail() || terms < 1) {
+        std::cin.clear(); // Clear the error state
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+        std::cout << "Please enter a valid number of terms (at least 1):\n";
+        std::cin >> terms;
     }
 
-    return 0;
+    for (int i = 0; i < terms; i++) {
+        std::cout << "For term " << i + 1 << ":\n";
+
+        int termCreditHours;
+        std::cout << "Enter the total number of credit hours for term " << i + 1 << "\n";
+        std::cin >> termCreditHours;
+
+        float termGPA = gpaCalc::semesterGPA();
+
+        while (std::cin.fail() || termCreditHours < 1) {
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Please enter a valid number of credit hours (at least 1):\n";
+            std::cin >> termCreditHours;
+        }
+
+        totalGPA += termGPA * termCreditHours;
+        totalCreditHours += termCreditHours;
+    }
+
+    float cumulativeGPA = 0.0;
+    if (totalCreditHours > 0) {
+        cumulativeGPA = totalGPA / totalCreditHours;
+    }
+
+    std::cout << "Cumulative GPA: " << std::setprecision(3) << cumulativeGPA << "\n";
+    return cumulativeGPA;
 } // End cumulativeGPA
 
 float gpaCalc::idealGPA() {
