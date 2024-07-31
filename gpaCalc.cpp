@@ -3,6 +3,7 @@
 //
 
 #include <limits>
+#include <iomanip>
 #include "gpaCalc.h"
 
 float updatedGPA;
@@ -20,6 +21,8 @@ float gpaCalc::semesterGPA() {
     int creditHours;
     char letterGrade;
     float courseGPA;
+    int totalCreditHours = 0;
+    float totalSemGPA = 0.0;
 
     std::map<int, std::pair<int, float>> courseInfo;
     //use the class as a key to access the pair that holds course hour and grade
@@ -42,7 +45,9 @@ float gpaCalc::semesterGPA() {
         std::cin >> letterGrade;
         letterGrade = toupper(letterGrade);
 
-        while (std::cin.fail() || (letterGrade != 'A' && letterGrade != 'B' && letterGrade != 'C' && letterGrade != 'D' && letterGrade != 'F')) {
+        while (std::cin.fail() ||
+               (letterGrade != 'A' && letterGrade != 'B' && letterGrade != 'C' && letterGrade != 'D' &&
+                letterGrade != 'F')) {
             std::cin.clear(); // Clear the error state
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
             std::cout << "Please enter a valid grade (A, B, C, D, F) for class " << i + 1 << ":\n";
@@ -51,11 +56,22 @@ float gpaCalc::semesterGPA() {
         }
 
         courseGPA = gpaCalc::letterGradeToGPA(letterGrade);
-
         courseInfo[i] = std::pair(creditHours, courseGPA);
     }
 
-    return 0;
+    for (auto iter : courseInfo) {
+        totalSemGPA += (iter.second.first * iter.second.second);
+        totalCreditHours += iter.second.first;
+    }
+
+    if (totalCreditHours > 0) {
+        totalSemGPA /= totalCreditHours;
+    } else {
+        totalSemGPA = 0.0; // Handle case where no classes were entered correctly
+    }
+
+    std::cout << std::setprecision(3) << totalSemGPA << "\n";
+    return totalSemGPA;
 } // End semesterGPA
 
 float gpaCalc::cumulativeGPA() {
