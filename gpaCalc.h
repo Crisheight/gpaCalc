@@ -16,6 +16,7 @@ public:
     static float cumulativeGPA();
     static float idealGPA();
     static float currentGPA();
+    static float letterGradeToGPA(char);
 };
 
 #endif //GPACALC_GPACALC_H

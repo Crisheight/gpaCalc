@@ -5,7 +5,7 @@
 #include <limits>
 #include "gpaCalc.h"
 
-float lastKnownGPA;
+float updatedGPA;
 
 void gpaCalc::calculate(const int choice){
 
@@ -18,6 +18,7 @@ void gpaCalc::calculate(const int choice){
 float gpaCalc::semesterGPA() {
     int classes;
     int creditHours;
+    char letterGrade;
     float courseGPA;
 
     std::map<int, std::pair<int, float>> courseInfo;
@@ -37,8 +38,19 @@ float gpaCalc::semesterGPA() {
         std::cout << "Enter the number of credit hours for class " << i + 1 << "\n";
         std::cin >> creditHours;
 
-        std::cout << "Enter the GPA for class " << i + 1 << "\n";
-        std::cin >> courseGPA;
+        std::cout << "Enter the letter grade for class " << i + 1 << " (A-F)" << "\n";
+        std::cin >> letterGrade;
+        letterGrade = toupper(letterGrade);
+
+        while (std::cin.fail() || (letterGrade != 'A' && letterGrade != 'B' && letterGrade != 'C' && letterGrade != 'D' && letterGrade != 'F')) {
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Please enter a valid grade (A, B, C, D, F) for class " << i + 1 << ":\n";
+            std::cin >> letterGrade;
+            letterGrade = toupper(letterGrade);
+        }
+
+        courseGPA = gpaCalc::letterGradeToGPA(letterGrade);
 
         courseInfo[i] = std::pair(creditHours, courseGPA);
     }
@@ -69,11 +81,24 @@ float gpaCalc::idealGPA() {
 } // End idealGPA
 
 float gpaCalc::currentGPA() {
-    if (lastKnownGPA > 0) {
-        std::cout << lastKnownGPA;
-        return lastKnownGPA;
+    if (updatedGPA > 0) {
+        std::cout << updatedGPA;
+        return updatedGPA;
     } else {
         std::cout << 0.0;
         return 0;
     }
 } // End currentGPA
+
+float gpaCalc::letterGradeToGPA(char grade) {
+    switch (grade) {
+        case 'A': return 4.0;
+        case 'B': return 3.0;
+        case 'C': return 2.0;
+        case 'D': return 1.0;
+        case 'F': return 0.0;
+        default: return 0; // Should not reach here
+    }
+} // End letterGradeToGPA
+
+
