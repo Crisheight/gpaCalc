@@ -4,7 +4,15 @@
 
 int main() {
 
-    gpaCalc::calculate(menuDriver::setIntention());
+    int mainChoice;
 
+    do {
+        mainChoice = menuDriver::setIntention();
+        if (mainChoice != menuDriver::EXIT_OPTION) {
+            gpaCalc::calculate(mainChoice);
+        }
+    } while (mainChoice != menuDriver::EXIT_OPTION);
+
+    std::cout << "Exiting program. Goodbye!\n";
     return 0;
 }
