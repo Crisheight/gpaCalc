@@ -129,10 +129,10 @@ float gpaCalc::targetGPA() {
 
 float gpaCalc::currentGPA() {
     if (updatedGPA > 0) {
-        std::cout << updatedGPA;
+        std::cout << updatedGPA << "\n";
         return updatedGPA;
     } else {
-        std::cout << 0.0;
+        std::cout << 0.0 << "\n";
         return 0;
     }
 } // End currentGPA
