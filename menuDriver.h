@@ -9,6 +9,7 @@
 class menuDriver {
 public:
     static int setIntention();
+    static const int EXIT_OPTION = 5;
 };
 
 
