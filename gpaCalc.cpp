@@ -12,8 +12,10 @@ void gpaCalc::calculate(const int choice){
 
     if(choice == 1) {gpaCalc::semesterGPA();}
     else if(choice == 2) {gpaCalc::cumulativeGPA();}
-    else if(choice == 3) {gpaCalc::idealGPA();}
-    else {gpaCalc::currentGPA();}
+    else if(choice == 3) {gpaCalc::targetGPA();}
+    else if(choice == 4){gpaCalc::currentGPA();}
+    else if(choice == 5){exit(0);}
+
 } // End calculate
 
 float gpaCalc::semesterGPA() {
@@ -71,6 +73,7 @@ float gpaCalc::semesterGPA() {
     }
 
     std::cout << std::setprecision(3) << totalSemGPA << "\n";
+    updatedGPA = totalSemGPA;
     return totalSemGPA;
 } // End semesterGPA
 
@@ -115,13 +118,14 @@ float gpaCalc::cumulativeGPA() {
     }
 
     std::cout << "Cumulative GPA: " << std::setprecision(3) << cumulativeGPA << "\n";
+    updatedGPA = cumulativeGPA;
     return cumulativeGPA;
 } // End cumulativeGPA
 
-float gpaCalc::idealGPA() {
+float gpaCalc::targetGPA() {
     std::cout << "Enter the GPA you want to achieve: ";
     return 0;
-} // End idealGPA
+} // End targetGPA
 
 float gpaCalc::currentGPA() {
     if (updatedGPA > 0) {

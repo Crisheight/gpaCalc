@@ -14,7 +14,7 @@ public:
     static void calculate(int);
     static float semesterGPA();
     static float cumulativeGPA();
-    static float idealGPA();
+    static float targetGPA();
     static float currentGPA();
     static float letterGradeToGPA(char);
 };
