@@ -9,7 +9,7 @@
 int menuDriver::setIntention() {
     int userChoice;
 
-    std::cout << "Select an option: \n";
+    std::cout << "\n Select an option: \n";
     std::cout << "1. Calculate Semester GPA \n";
     std::cout << "2. Calculate Cumulative GPA \n";
     std::cout << "3. Calculate Target GPA \n";
