@@ -6,7 +6,7 @@
 #include <iomanip>
 #include "gpaCalc.h"
 
-float updatedGPA;
+float updatedGPA = 0.0;
 
 void gpaCalc::calculate(const int choice){
 
@@ -123,7 +123,62 @@ float gpaCalc::cumulativeGPA() {
 } // End cumulativeGPA
 
 float gpaCalc::targetGPA() {
-    std::cout << "Enter the GPA you want to achieve: ";
+    if(updatedGPA > 0) {
+        float currentGPA = updatedGPA;
+        float targetGPA;
+        int totalCreditHours;
+        int remainingCreditHours;
+        float remainingGPA;
+
+        std::cout << "Enter the total number of credit hours you have completed: ";
+        std::cin >> totalCreditHours;
+
+        while (std::cin.fail() || totalCreditHours < 1) {
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Please enter a valid number of credit hours (at least 1):\n";
+            std::cin >> totalCreditHours;
+        }
+
+        std::cout << "Enter the total number of credit hours you have remaining: \n";
+        std::cin >> remainingCreditHours;
+
+        while (std::cin.fail() || remainingCreditHours < 1) {
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Please enter a valid number of credit hours (at least 1): \n";
+            std::cin >> remainingCreditHours;
+        }
+
+        std::cout << "Enter the GPA you want to achieve: \n";
+        std::cin >> targetGPA;
+
+        while (std::cin.fail() || targetGPA < 0 || targetGPA > 4) {
+            std::cin.clear(); // Clear the error state
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Please enter a valid GPA (between 0 and 4): \n";
+            std::cin >> targetGPA;
+        }
+
+        remainingGPA = ( targetGPA * (totalCreditHours + remainingCreditHours) - currentGPA * totalCreditHours ) /
+                       remainingCreditHours;
+
+        std::cout << "You need a GPA of " << std::setprecision(3) << remainingGPA << " to achieve a GPA of "
+                  << targetGPA << "\n";
+        return remainingGPA;
+    }
+
+    std::cout << "Enter your current GPA: \n";
+    std::cin >> updatedGPA;
+    while (std::cin.fail() || updatedGPA < 0 || updatedGPA > 4) {
+        std::cin.clear(); // Clear the error state
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+        std::cout << "Please enter a valid GPA (between 0 and 4):\n";
+        std::cin >> updatedGPA;
+    }
+    // Recursively call targetGPA function again now that we have an updatedGPA value
+    gpaCalc::targetGPA();
+
     return 0;
 } // End targetGPA
 
