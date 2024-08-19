@@ -1,4 +1,4 @@
-Provide a CLI menu for the user
+Provides a CLI menu for the user
 
 Select from:
 
