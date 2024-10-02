@@ -8,4 +8,6 @@ Select from:
 
     Future GPA
 
-    Current GPA
+    Target GPA
+
+    Exit
